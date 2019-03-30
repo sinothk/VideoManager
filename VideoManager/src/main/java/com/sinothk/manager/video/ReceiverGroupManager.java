@@ -1,20 +1,20 @@
-package com.sinothk.manager.video.demo;
+package com.sinothk.manager.video;
 
 import android.content.Context;
 
 import com.kk.taurus.playerbase.receiver.GroupValue;
 import com.kk.taurus.playerbase.receiver.ReceiverGroup;
-import com.sinothk.manager.video.demo.cover.CompleteCover;
-import com.sinothk.manager.video.demo.cover.ControllerCover;
-import com.sinothk.manager.video.demo.cover.ErrorCover;
-import com.sinothk.manager.video.demo.cover.GestureCover;
-import com.sinothk.manager.video.demo.cover.LoadingCover;
+import com.sinothk.manager.video.cover.CompleteCover;
+import com.sinothk.manager.video.cover.ControllerCover;
+import com.sinothk.manager.video.cover.ErrorCover;
+import com.sinothk.manager.video.cover.GestureCover;
+import com.sinothk.manager.video.cover.LoadingCover;
 
-import static com.sinothk.manager.video.demo.DataInter.ReceiverKey.KEY_COMPLETE_COVER;
-import static com.sinothk.manager.video.demo.DataInter.ReceiverKey.KEY_CONTROLLER_COVER;
-import static com.sinothk.manager.video.demo.DataInter.ReceiverKey.KEY_ERROR_COVER;
-import static com.sinothk.manager.video.demo.DataInter.ReceiverKey.KEY_GESTURE_COVER;
-import static com.sinothk.manager.video.demo.DataInter.ReceiverKey.KEY_LOADING_COVER;
+import static com.sinothk.manager.video.DataInter.ReceiverKey.KEY_COMPLETE_COVER;
+import static com.sinothk.manager.video.DataInter.ReceiverKey.KEY_CONTROLLER_COVER;
+import static com.sinothk.manager.video.DataInter.ReceiverKey.KEY_ERROR_COVER;
+import static com.sinothk.manager.video.DataInter.ReceiverKey.KEY_GESTURE_COVER;
+import static com.sinothk.manager.video.DataInter.ReceiverKey.KEY_LOADING_COVER;
 
 /**
  * Created by Taurus on 2018/4/18.

@@ -1,4 +1,4 @@
-package com.sinothk.manager.video.demo;
+package com.sinothk.manager.video;
 
 import android.app.Activity;
 import android.app.ActivityManager;

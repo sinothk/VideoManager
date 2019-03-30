@@ -11,7 +11,7 @@
         android:padding="10dp"
         android:layout_centerInParent="true">
 
-        <com.sinothk.manager.video.demo.SmileView
+        <com.sinothk.manager.video.SmileView
             android:id="@+id/cover_player_loading_view_loading"
             android:layout_width="45dp"
             android:layout_height="45dp"

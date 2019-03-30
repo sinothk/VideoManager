@@ -1,4 +1,4 @@
-package com.sinothk.manager.video.demo;
+package com.sinothk.manager.video;
 
 import com.kk.taurus.playerbase.assist.InterEvent;
 import com.kk.taurus.playerbase.assist.InterKey;

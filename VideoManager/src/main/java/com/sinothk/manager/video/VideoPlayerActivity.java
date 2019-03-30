@@ -1,4 +1,4 @@
-package com.sinothk.manager.video.demo;
+package com.sinothk.manager.video;
 
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
@@ -17,7 +17,15 @@ import com.kk.taurus.playerbase.player.IPlayer;
 import com.kk.taurus.playerbase.receiver.ReceiverGroup;
 import com.kk.taurus.playerbase.widget.BaseVideoView;
 
-public class VideoManagerMainActivity extends AppCompatActivity implements OnPlayerEventListener {
+/**
+ * <pre>
+ *  创建:  梁玉涛 2019/3/30 on 16:55
+ *  项目:  VideoManagerLib
+ *  描述:
+ *  更新:
+ * <pre>
+ */
+public class VideoPlayerActivity extends AppCompatActivity implements OnPlayerEventListener {
 
     private BaseVideoView mVideoView;
     private ReceiverGroup mReceiverGroup;
@@ -50,7 +58,7 @@ public class VideoManagerMainActivity extends AppCompatActivity implements OnPla
 
     private void initPlay() {
         if (!hasStart) {
-            DataSource dataSource = new DataSource("http://192.168.124.16:8888/amor/admin/videos/obj.mp4");//DataUtils.VIDEO_URL_08
+            DataSource dataSource = new DataSource(DataUtils.VIDEO_URL_08);//DataUtils.VIDEO_URL_08
             dataSource.setTitle("音乐和艺术如何改变世界");
             mVideoView.setDataSource(dataSource);
             mVideoView.start();
@@ -60,14 +68,19 @@ public class VideoManagerMainActivity extends AppCompatActivity implements OnPla
 
     @Override
     public void onPlayerEvent(int eventCode, Bundle bundle) {
-        switch (eventCode) {
-            case OnPlayerEventListener.PLAYER_EVENT_ON_VIDEO_RENDER_START:
-//                mRecycler.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+
+        if (eventCode == OnPlayerEventListener.PLAYER_EVENT_ON_VIDEO_RENDER_START) {
+            //                mRecycler.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 //                SettingAdapter mAdapter = new SettingAdapter(this, SettingItem.initSettingList());
 //                mAdapter.setOnItemClickListener(this);
 //                mRecycler.setAdapter(mAdapter);
-                break;
         }
+
+//        switch (eventCode) {
+//            case OnPlayerEventListener.PLAYER_EVENT_ON_VIDEO_RENDER_START:
+//
+//                break;
+//        }
     }
 
     private OnVideoViewEventHandler onVideoViewEventHandler = new OnVideoViewEventHandler() {
@@ -98,7 +111,7 @@ public class VideoManagerMainActivity extends AppCompatActivity implements OnPla
 
         @Override
         public void requestRetry(BaseVideoView videoView, Bundle bundle) {
-            if (PUtil.isTopActivity(VideoManagerMainActivity.this)) {
+            if (PUtil.isTopActivity(VideoPlayerActivity.this)) {
                 super.requestRetry(videoView, bundle);
             }
         }

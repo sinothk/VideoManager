@@ -1,4 +1,4 @@
-package com.sinothk.manager.video.demo;
+package com.sinothk.manager.video;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;

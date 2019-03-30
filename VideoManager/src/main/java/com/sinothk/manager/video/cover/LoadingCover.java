@@ -1,4 +1,4 @@
-package com.sinothk.manager.video.demo.cover;
+package com.sinothk.manager.video.cover;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -8,7 +8,7 @@ import com.kk.taurus.playerbase.event.OnPlayerEventListener;
 import com.kk.taurus.playerbase.player.IPlayer;
 import com.kk.taurus.playerbase.receiver.BaseCover;
 import com.kk.taurus.playerbase.receiver.PlayerStateGetter;
-import com.sinothk.manager.video.demo.R;
+import com.sinothk.manager.video.R;
 
 /**
  * Created by Taurus on 2018/4/15.

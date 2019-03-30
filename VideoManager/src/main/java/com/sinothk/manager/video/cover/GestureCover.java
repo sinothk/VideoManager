@@ -1,4 +1,4 @@
-package com.sinothk.manager.video.demo.cover;
+package com.sinothk.manager.video.cover;
 
 import android.app.Activity;
 import android.content.Context;
@@ -22,37 +22,25 @@ import com.kk.taurus.playerbase.receiver.IReceiverGroup;
 import com.kk.taurus.playerbase.receiver.PlayerStateGetter;
 import com.kk.taurus.playerbase.touch.OnTouchGestureListener;
 import com.kk.taurus.playerbase.utils.TimeUtil;
-import com.sinothk.manager.video.demo.DataInter;
-import com.sinothk.manager.video.demo.R;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
+import com.sinothk.manager.video.DataInter;
+import com.sinothk.manager.video.R;
 
 public class GestureCover extends BaseCover implements OnTouchGestureListener {
 
-    @BindView(R.id.cover_player_gesture_operation_volume_box)
     View mVolumeBox;
-    @BindView(R.id.cover_player_gesture_operation_brightness_box)
     View mBrightnessBox;
-    @BindView(R.id.cover_player_gesture_operation_volume_icon)
     ImageView mVolumeIcon;
-    @BindView(R.id.cover_player_gesture_operation_volume_text)
     TextView mVolumeText;
-    @BindView(R.id.cover_player_gesture_operation_brightness_text)
     TextView mBrightnessText;
-    @BindView(R.id.cover_player_gesture_operation_fast_forward_box)
     View mFastForwardBox;
-    @BindView(R.id.cover_player_gesture_operation_fast_forward_text_view_step_time)
     TextView mFastForwardStepTime;
-    @BindView(R.id.cover_player_gesture_operation_fast_forward_text_view_progress_time)
     TextView mFastForwardProgressTime;
 
     private boolean firstTouch;
 
     private int mSeekProgress = -1;
 
-    private int mWidth,mHeight;
+    private int mWidth, mHeight;
     private long newPosition;
 
     private boolean mHorizontalSlide;
@@ -65,18 +53,17 @@ public class GestureCover extends BaseCover implements OnTouchGestureListener {
 
     private Bundle mBundle;
 
-    private Handler mHandler = new Handler(Looper.getMainLooper()){
+    private Handler mHandler = new Handler(Looper.getMainLooper()) {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            switch (msg.what){
+            switch (msg.what) {
 
             }
         }
     };
     private boolean horizontalSlide;
     private boolean rightVerticalSlide;
-    private Unbinder unbinder;
 
     public GestureCover(Context context) {
         super(context);
@@ -85,7 +72,15 @@ public class GestureCover extends BaseCover implements OnTouchGestureListener {
     @Override
     public void onReceiverBind() {
         super.onReceiverBind();
-        unbinder = ButterKnife.bind(this, getView());
+
+        mVolumeBox = findViewById(R.id.cover_player_gesture_operation_volume_box);
+        mBrightnessBox = findViewById(R.id.cover_player_gesture_operation_brightness_box);
+        mVolumeIcon = findViewById(R.id.cover_player_gesture_operation_volume_icon);
+        mVolumeText = findViewById(R.id.cover_player_gesture_operation_volume_text);
+        mBrightnessText = findViewById(R.id.cover_player_gesture_operation_brightness_text);
+        mFastForwardBox = findViewById(R.id.cover_player_gesture_operation_fast_forward_box);
+        mFastForwardStepTime = findViewById(R.id.cover_player_gesture_operation_fast_forward_text_view_step_time);
+        mFastForwardProgressTime = findViewById(R.id.cover_player_gesture_operation_fast_forward_text_view_progress_time);
 
         mBundle = new Bundle();
         initAudioManager(getContext());
@@ -95,7 +90,6 @@ public class GestureCover extends BaseCover implements OnTouchGestureListener {
     @Override
     public void onReceiverUnBind() {
         super.onReceiverUnBind();
-        unbinder.unbind();
     }
 
     private void initAudioManager(Context context) {
@@ -103,7 +97,7 @@ public class GestureCover extends BaseCover implements OnTouchGestureListener {
         mMaxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
     }
 
-    private void sendSeekEvent(int progress){
+    private void sendSeekEvent(int progress) {
         getGroupValue().putBoolean(DataInter.Key.KEY_TIMER_UPDATE_ENABLE, false);
         mSeekProgress = progress;
         mHandler.removeCallbacks(mSeekEventRunnable);
@@ -113,7 +107,7 @@ public class GestureCover extends BaseCover implements OnTouchGestureListener {
     private Runnable mSeekEventRunnable = new Runnable() {
         @Override
         public void run() {
-            if(mSeekProgress < 0)
+            if (mSeekProgress < 0)
                 return;
             Bundle bundle = BundlePool.obtain();
             bundle.putInt(EventKey.INT_DATA, mSeekProgress);
@@ -131,7 +125,7 @@ public class GestureCover extends BaseCover implements OnTouchGestureListener {
 
                 @Override
                 public void onValueUpdate(String key, Object value) {
-                    if(key.equals(DataInter.Key.KEY_COMPLETE_SHOW)){
+                    if (key.equals(DataInter.Key.KEY_COMPLETE_SHOW)) {
                         setGestureEnable(!(boolean) value);
                     }
                 }
@@ -158,37 +152,37 @@ public class GestureCover extends BaseCover implements OnTouchGestureListener {
     }
 
     public void setVolumeBoxState(boolean state) {
-        if(mVolumeBox!=null){
-            mVolumeBox.setVisibility(state?View.VISIBLE:View.GONE);
+        if (mVolumeBox != null) {
+            mVolumeBox.setVisibility(state ? View.VISIBLE : View.GONE);
         }
     }
 
     public void setVolumeIcon(int resId) {
-        if(mVolumeIcon!=null){
+        if (mVolumeIcon != null) {
             mVolumeIcon.setImageResource(resId);
         }
     }
 
     public void setVolumeText(String text) {
-        if(mVolumeText!=null){
+        if (mVolumeText != null) {
             mVolumeText.setText(text);
         }
     }
 
     public void setBrightnessBoxState(boolean state) {
-        if(mBrightnessBox!=null){
-            mBrightnessBox.setVisibility(state?View.VISIBLE:View.GONE);
+        if (mBrightnessBox != null) {
+            mBrightnessBox.setVisibility(state ? View.VISIBLE : View.GONE);
         }
     }
 
     public void setBrightnessText(String text) {
-        if(mBrightnessText!=null){
+        if (mBrightnessText != null) {
             mBrightnessText.setText(text);
         }
     }
 
     private void setFastForwardState(boolean state) {
-        mFastForwardBox.setVisibility(state?View.VISIBLE:View.GONE);
+        mFastForwardBox.setVisibility(state ? View.VISIBLE : View.GONE);
     }
 
     private void setFastForwardStepTime(String text) {
@@ -215,7 +209,7 @@ public class GestureCover extends BaseCover implements OnTouchGestureListener {
 
     @Override
     public void onPlayerEvent(int eventCode, Bundle bundle) {
-        switch (eventCode){
+        switch (eventCode) {
             case OnPlayerEventListener.PLAYER_EVENT_ON_VIDEO_RENDER_START:
                 setGestureEnable(true);
                 break;
@@ -251,7 +245,7 @@ public class GestureCover extends BaseCover implements OnTouchGestureListener {
 
     @Override
     public void onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-        if(!mGestureEnable)
+        if (!mGestureEnable)
             return;
         float mOldX = e1.getX(), mOldY = e1.getY();
         float deltaY = mOldY - e2.getY();
@@ -262,46 +256,46 @@ public class GestureCover extends BaseCover implements OnTouchGestureListener {
             firstTouch = false;
         }
 
-        if(horizontalSlide){
+        if (horizontalSlide) {
             onHorizontalSlide(-deltaX / mWidth);
-        }else{
-            if(Math.abs(deltaY) > mHeight)
+        } else {
+            if (Math.abs(deltaY) > mHeight)
                 return;
-            if(rightVerticalSlide){
+            if (rightVerticalSlide) {
                 onRightVerticalSlide(deltaY / mHeight);
-            }else{
+            } else {
                 onLeftVerticalSlide(deltaY / mHeight);
             }
         }
     }
 
-    private int getDuration(){
+    private int getDuration() {
         PlayerStateGetter playerStateGetter = getPlayerStateGetter();
-        return playerStateGetter==null?0:playerStateGetter.getDuration();
+        return playerStateGetter == null ? 0 : playerStateGetter.getDuration();
     }
 
-    private int getCurrentPosition(){
+    private int getCurrentPosition() {
         PlayerStateGetter playerStateGetter = getPlayerStateGetter();
-        return playerStateGetter==null?0:playerStateGetter.getCurrentPosition();
+        return playerStateGetter == null ? 0 : playerStateGetter.getCurrentPosition();
     }
 
-    private void onHorizontalSlide(float percent){
-        if(getDuration() <= 0)
+    private void onHorizontalSlide(float percent) {
+        if (getDuration() <= 0)
             return;
         mHorizontalSlide = true;
-        if(getGroupValue().getBoolean(DataInter.Key.KEY_TIMER_UPDATE_ENABLE)){
+        if (getGroupValue().getBoolean(DataInter.Key.KEY_TIMER_UPDATE_ENABLE)) {
             getGroupValue().putBoolean(DataInter.Key.KEY_TIMER_UPDATE_ENABLE, false);
         }
         long position = getCurrentPosition();
         long duration = getDuration();
-        long deltaMax = Math.min(getDuration()/2, duration - position);
+        long deltaMax = Math.min(getDuration() / 2, duration - position);
         long delta = (long) (deltaMax * percent);
         newPosition = delta + position;
         if (newPosition > duration) {
             newPosition = duration;
         } else if (newPosition <= 0) {
             newPosition = 0;
-            delta=-position;
+            delta = -position;
         }
         int showDelta = (int) delta / 1000;
         if (showDelta != 0) {
@@ -314,12 +308,12 @@ public class GestureCover extends BaseCover implements OnTouchGestureListener {
             setFastForwardState(true);
             String text = showDelta > 0 ? ("+" + showDelta) : "" + showDelta;
             setFastForwardStepTime(text + "s");
-            String progressText = TimeUtil.getTimeSmartFormat(newPosition)+"/" + TimeUtil.getTimeSmartFormat(duration);
+            String progressText = TimeUtil.getTimeSmartFormat(newPosition) + "/" + TimeUtil.getTimeSmartFormat(duration);
             setFastForwardProgressTime(progressText);
         }
     }
 
-    private void onRightVerticalSlide(float percent){
+    private void onRightVerticalSlide(float percent) {
         mHorizontalSlide = false;
         int index = (int) (percent * mMaxVolume) + volume;
         if (index > mMaxVolume)
@@ -335,23 +329,23 @@ public class GestureCover extends BaseCover implements OnTouchGestureListener {
             s = "OFF";
         }
         // 显示
-        setVolumeIcon(i==0?R.mipmap.ic_volume_off_white: R.mipmap.ic_volume_up_white);
+        setVolumeIcon(i == 0 ? R.mipmap.ic_volume_off_white : R.mipmap.ic_volume_up_white);
         setBrightnessBoxState(false);
         setFastForwardState(false);
         setVolumeBoxState(true);
         setVolumeText(s);
     }
 
-    private void onLeftVerticalSlide(float percent){
+    private void onLeftVerticalSlide(float percent) {
         mHorizontalSlide = false;
         Activity activity = getActivity();
-        if(activity==null)
+        if (activity == null)
             return;
         if (brightness < 0) {
             brightness = activity.getWindow().getAttributes().screenBrightness;
-            if (brightness <= 0.00f){
+            if (brightness <= 0.00f) {
                 brightness = 0.50f;
-            }else if (brightness < 0.01f){
+            } else if (brightness < 0.01f) {
                 brightness = 0.01f;
             }
         }
@@ -360,24 +354,24 @@ public class GestureCover extends BaseCover implements OnTouchGestureListener {
         setBrightnessBoxState(true);
         WindowManager.LayoutParams lpa = activity.getWindow().getAttributes();
         lpa.screenBrightness = brightness + percent;
-        if (lpa.screenBrightness > 1.0f){
+        if (lpa.screenBrightness > 1.0f) {
             lpa.screenBrightness = 1.0f;
-        }else if (lpa.screenBrightness < 0.01f){
+        } else if (lpa.screenBrightness < 0.01f) {
             lpa.screenBrightness = 0.01f;
         }
-        setBrightnessText(((int) (lpa.screenBrightness * 100))+"%");
+        setBrightnessText(((int) (lpa.screenBrightness * 100)) + "%");
         activity.getWindow().setAttributes(lpa);
     }
 
-    private Activity getActivity(){
+    private Activity getActivity() {
         Context context = getContext();
-        if(context instanceof Activity){
+        if (context instanceof Activity) {
             return (Activity) context;
         }
         return null;
     }
 
-    private int getVolume(){
+    private int getVolume() {
         volume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
         if (volume < 0)
             volume = 0;
@@ -391,10 +385,10 @@ public class GestureCover extends BaseCover implements OnTouchGestureListener {
         setVolumeBoxState(false);
         setBrightnessBoxState(false);
         setFastForwardState(false);
-        if(newPosition >= 0 && mHorizontalSlide){
+        if (newPosition >= 0 && mHorizontalSlide) {
             sendSeekEvent((int) newPosition);
             newPosition = 0;
-        }else{
+        } else {
             getGroupValue().putBoolean(DataInter.Key.KEY_TIMER_UPDATE_ENABLE, true);
         }
         mHorizontalSlide = false;

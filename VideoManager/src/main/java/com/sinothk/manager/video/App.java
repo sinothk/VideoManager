@@ -1,15 +1,11 @@
-package com.sinothk.manager.video.demo;
+package com.sinothk.manager.video;
 
 import android.app.Application;
-import android.os.Environment;
 
 import com.kk.taurus.playerbase.config.PlayerConfig;
 import com.kk.taurus.playerbase.config.PlayerLibrary;
-import com.kk.taurus.playerbase.entity.DecoderPlan;
 import com.kk.taurus.playerbase.log.PLog;
 import com.kk.taurus.playerbase.record.PlayRecordManager;
-
-import java.io.File;
 
 /**
  * <pre>

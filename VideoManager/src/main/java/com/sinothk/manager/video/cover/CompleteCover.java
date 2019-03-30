@@ -14,7 +14,7 @@
  *    limitations under the License.
  */
 
-package com.sinothk.manager.video.demo.cover;
+package com.sinothk.manager.video.cover;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -23,8 +23,8 @@ import android.widget.TextView;
 
 import com.kk.taurus.playerbase.event.OnPlayerEventListener;
 import com.kk.taurus.playerbase.receiver.BaseCover;
-import com.sinothk.manager.video.demo.DataInter;
-import com.sinothk.manager.video.demo.R;
+import com.sinothk.manager.video.DataInter;
+import com.sinothk.manager.video.R;
 
 /**
  * Created by Taurus on 2018/4/20.
@@ -69,11 +69,11 @@ public class CompleteCover extends BaseCover {
     private View.OnClickListener mOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            switch (v.getId()){
-                case R.id.tv_replay:
-                    requestReplay(null);
-                    break;
+
+            if (v.getId() == R.id.tv_replay) {
+                requestReplay(null);
             }
+
             setPlayCompleteState(false);
         }
     };

@@ -1,10 +1,7 @@
-package com.sinothk.manager.video.demo;
+package com.sinothk.manager.video;
 
 //import com.jiajunhui.xapp.medialoader.bean.VideoItem;
 //import com.kk.taurus.avplayer.bean.VideoBean;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Taurus on 2018/4/19.
