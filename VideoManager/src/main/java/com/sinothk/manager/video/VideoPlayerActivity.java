@@ -43,7 +43,7 @@ public abstract class VideoPlayerActivity extends AppCompatActivity implements O
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_video_manager_main);
+        setContentView(getLayoutId());
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -59,6 +59,10 @@ public abstract class VideoPlayerActivity extends AppCompatActivity implements O
         mVideoView.setReceiverGroup(mReceiverGroup);
         mVideoView.setEventHandler(onVideoViewEventHandler);
         mVideoView.setOnPlayerEventListener(this);
+    }
+
+    private int getLayoutId() {
+        return R.layout.activity_video_manager_main;
     }
 
     private void initPlay() {
