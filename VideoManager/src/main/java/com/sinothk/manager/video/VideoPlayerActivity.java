@@ -31,17 +31,6 @@ public abstract class VideoPlayerActivity extends AppCompatActivity implements O
 
     public abstract DataSource getDataSource();
 
-    // =======================================================
-
-    private BaseVideoView mVideoView;
-    private ReceiverGroup mReceiverGroup;
-
-    private boolean userPause;
-    private boolean isLandscape;
-    private int margin;
-
-    private boolean hasStart;
-
     /**
      * 隐藏虚拟按键，并且全屏
      */
@@ -59,12 +48,69 @@ public abstract class VideoPlayerActivity extends AppCompatActivity implements O
         }
     }
 
+    protected void hideBottomUIMenu2() {
+        //隐藏虚拟按键
+        if (Build.VERSION.SDK_INT > 11 && Build.VERSION.SDK_INT < 19) {
+            View v = getWindow().getDecorView();
+            v.setSystemUiVisibility(View.GONE);
+        } else if (Build.VERSION.SDK_INT >= 19) {
+            View decorView = getWindow().getDecorView();
+            int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                    | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                    | View.SYSTEM_UI_FLAG_FULLSCREEN;
+            decorView.setSystemUiVisibility(uiOptions);
+        }
+    }
+
+    /**
+     * 显示虚拟按键，并且全屏
+     */
+    protected void showBottomUIMenu() {
+        //隐藏虚拟按键，并且全屏
+        if (Build.VERSION.SDK_INT > 11 && Build.VERSION.SDK_INT < 19) { // lower api
+            View v = this.getWindow().getDecorView();
+            v.setSystemUiVisibility(View.GONE);
+        } else if (Build.VERSION.SDK_INT >= 19) {
+            //for new api versions.
+            View decorView = getWindow().getDecorView();
+            int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                    | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY | View.SYSTEM_UI_FLAG_FULLSCREEN;
+            decorView.setSystemUiVisibility(uiOptions);
+        }
+    }
+
+    /**
+     * 显示菜单栏
+     * 如果底部的bar 隐藏就显示
+     */
+    protected void showBottomUIMenu2() {
+//        /显示虚拟按键
+        if (Build.VERSION.SDK_INT > 11 && Build.VERSION.SDK_INT < 19) {
+            //低版本sdk
+            View v = getWindow().getDecorView();
+            v.setSystemUiVisibility(View.VISIBLE);
+        } else if (Build.VERSION.SDK_INT >= 19) {
+            View decorView = getWindow().getDecorView();
+            int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
+            decorView.setSystemUiVisibility(uiOptions);
+        }
+    }
+    // =======================================================
+
+    private BaseVideoView mVideoView;
+    private ReceiverGroup mReceiverGroup;
+
+    private boolean userPause;
+    private boolean isLandscape;
+    private int margin;
+
+    private boolean hasStart;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
-        hideBottomUIMenu();
+
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
@@ -254,11 +300,15 @@ public abstract class VideoPlayerActivity extends AppCompatActivity implements O
             layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT;
             layoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT;
             layoutParams.setMargins(0, 0, 0, 0);
+
+            hideBottomUIMenu2();
         } else {
             layoutParams.width = PUtil.getScreenW(this);// - (margin * 2)
             layoutParams.height = layoutParams.width * 9 / 16;
 
             layoutParams.setMargins(0, 0, 0, 0);//(margin, margin, margin, margin)
+
+            showBottomUIMenu2();
         }
         mVideoView.setLayoutParams(layoutParams);
     }
