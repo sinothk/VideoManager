@@ -7,7 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
 
 import com.kk.taurus.playerbase.assist.InterEvent;
 import com.kk.taurus.playerbase.assist.OnVideoViewEventHandler;
@@ -25,7 +25,11 @@ import com.kk.taurus.playerbase.widget.BaseVideoView;
  *  更新:
  * <pre>
  */
-public class VideoPlayerActivity extends AppCompatActivity implements OnPlayerEventListener {
+public abstract class VideoPlayerActivity extends AppCompatActivity implements OnPlayerEventListener {
+
+    public abstract DataSource getDataSource();
+
+    // =======================================================
 
     private BaseVideoView mVideoView;
     private ReceiverGroup mReceiverGroup;
@@ -40,6 +44,7 @@ public class VideoPlayerActivity extends AppCompatActivity implements OnPlayerEv
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video_manager_main);
+
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
@@ -58,9 +63,10 @@ public class VideoPlayerActivity extends AppCompatActivity implements OnPlayerEv
 
     private void initPlay() {
         if (!hasStart) {
-            DataSource dataSource = new DataSource(DataUtils.VIDEO_URL_08);//DataUtils.VIDEO_URL_08
-            dataSource.setTitle("音乐和艺术如何改变世界");
-            mVideoView.setDataSource(dataSource);
+//            DataSource dataSource = new DataSource(DataUtils.VIDEO_URL_08);//DataUtils.VIDEO_URL_08
+//            dataSource.setTitle("音乐和艺术如何改变世界");
+
+            mVideoView.setDataSource(getDataSource());
             mVideoView.start();
             hasStart = true;
         }
@@ -219,15 +225,16 @@ public class VideoPlayerActivity extends AppCompatActivity implements OnPlayerEv
 //    }
 
     private void updateVideo(boolean landscape) {
-        RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) mVideoView.getLayoutParams();
+        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) mVideoView.getLayoutParams();
         if (landscape) {
             layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT;
             layoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT;
             layoutParams.setMargins(0, 0, 0, 0);
         } else {
-            layoutParams.width = PUtil.getScreenW(this) - (margin * 2);
-            layoutParams.height = layoutParams.width * 3 / 4;
-            layoutParams.setMargins(margin, margin, margin, margin);
+            layoutParams.width = PUtil.getScreenW(this);// - (margin * 2)
+            layoutParams.height = layoutParams.width * 9 / 16;
+
+            layoutParams.setMargins(0, 0, 0, 0);//(margin, margin, margin, margin)
         }
         mVideoView.setLayoutParams(layoutParams);
     }

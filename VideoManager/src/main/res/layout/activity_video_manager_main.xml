@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#00FF00"
+    android:orientation="vertical">
 
     <com.kk.taurus.playerbase.widget.BaseVideoView
         android:id="@+id/baseVideoView"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:background="#000000"/>
-</RelativeLayout>
+        android:background="#000000" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SSSSSSS"
+        android:textColor="@color/colorAccent" />
+
+</LinearLayout>

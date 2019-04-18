@@ -15,16 +15,16 @@ import com.kk.taurus.playerbase.record.PlayRecordManager;
  *  更新:
  * <pre>
  */
-public class App extends Application {
+public class VideoApplication extends Application {
 
     public static final int PLAN_ID_IJK = 1;
     public static final int PLAN_ID_EXO = 2;
 
-    private static App instance;
+    private static VideoApplication instance;
 
     public static boolean ignoreMobile;
 
-    public static App get(){
+    public static VideoApplication get(){
         return instance;
     }
 

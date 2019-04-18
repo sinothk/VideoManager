@@ -11,7 +11,7 @@ import com.kk.taurus.playerbase.event.EventKey;
 import com.kk.taurus.playerbase.event.OnPlayerEventListener;
 import com.kk.taurus.playerbase.receiver.BaseCover;
 import com.kk.taurus.playerbase.utils.NetworkUtils;
-import com.sinothk.manager.video.App;
+import com.sinothk.manager.video.VideoApplication;
 import com.sinothk.manager.video.DataInter;
 import com.sinothk.manager.video.R;
 
@@ -69,7 +69,7 @@ public class ErrorCover extends BaseCover implements View.OnClickListener {
                 requestRetry(bundle);
                 break;
             case STATUS_MOBILE:
-                App.ignoreMobile = true;
+                VideoApplication.ignoreMobile = true;
                 setErrorState(false);
                 requestResume(bundle);
                 break;
@@ -108,7 +108,7 @@ public class ErrorCover extends BaseCover implements View.OnClickListener {
                     setErrorState(false);
                 }
             } else {
-                if (App.ignoreMobile)
+                if (VideoApplication.ignoreMobile)
                     return;
                 mStatus = STATUS_MOBILE;
                 setErrorInfo("您正在使用移动网络！");
