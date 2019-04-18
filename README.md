@@ -13,7 +13,7 @@
 
 ## Step 2. Add the dependency
 	
-  dependencies {
+  	dependencies {
 	        implementation 'com.github.sinothk:VideoManager:1.0.0418'
 	}
 
