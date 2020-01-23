@@ -4,12 +4,13 @@ import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.kk.taurus.playerbase.assist.InterEvent;
 import com.kk.taurus.playerbase.assist.OnVideoViewEventHandler;
@@ -23,7 +24,7 @@ import com.kk.taurus.playerbase.widget.BaseVideoView;
  * <pre>
  *  创建:  梁玉涛 2019/3/30 on 16:55
  *  项目:  VideoManagerLib
- *  描述:
+ *  描述: https://github.com/jiajunhui/PlayerBase
  *  更新:
  * <pre>
  */
