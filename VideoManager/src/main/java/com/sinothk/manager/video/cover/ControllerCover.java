@@ -254,6 +254,13 @@ public class ControllerCover extends BaseCover implements OnTimerUpdateListener,
     }
 
     private void setSwitchScreenIcon(boolean isFullScreen) {
+
+        if (isFullScreen) {
+            mBackIcon.setVisibility(View.VISIBLE);
+        }else{
+            mBackIcon.setVisibility(View.GONE);
+        }
+
         mSwitchScreen.setImageResource(isFullScreen ? R.mipmap.icon_exit_full_screen : R.mipmap.icon_full_screen);
     }
 
