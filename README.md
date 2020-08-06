@@ -1,6 +1,6 @@
 # VideoManager
 
-    VideoManager（https://github.com/jiajunhui/PlayerBase）
+    VideoManager（来源：https://github.com/jiajunhui/PlayerBase）
 
 ## Step 1. Add the JitPack repository to your build file
     
@@ -14,7 +14,7 @@
 ## Step 2. Add the dependency
 	
   	dependencies {
-	        implementation 'com.github.sinothk:VideoManager:1.0.0425'
+	        implementation 'com.github.sinothk:VideoManager:3.x.0810'
 	}
 
 
