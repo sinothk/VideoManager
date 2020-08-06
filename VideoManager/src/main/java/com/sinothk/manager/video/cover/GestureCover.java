@@ -227,7 +227,7 @@ public class GestureCover extends BaseCover implements OnTouchGestureListener {
     }
 
     @Override
-    public void onSingleTapUp(MotionEvent event) {
+    public void onSingleTapConfirmed(MotionEvent event) {
 
     }
 
